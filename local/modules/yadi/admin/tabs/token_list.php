@@ -1,5 +1,5 @@
 <?
-if(!function_exists('token_list')) {
+if(!function_exists('token_list_html')) {
 	function token_list_html() {
 		\Bitrix\Main\Loader::includeModule('yadi');
 		$yadi_db = new \YaDi\DataBase();

@@ -11,6 +11,7 @@ $APPLICATION->SetTitle("Получить oAuth Token");
 
 require(__DIR__."/events.php");
 
+require(__DIR__."/tabs/get_token.php");
 require(__DIR__."/tabs/token_list.php");
 ?>
 
@@ -23,7 +24,7 @@ $arTabs = array(
 	    "TAB" => "Получить токен",
 	    "ICON" => "main_user_edit",
 	    "TITLE" => "Получить oAuth token",
-	    "CONTENT" => file_get_contents(__DIR__."/tabs/get_token.php")
+	    "CONTENT" => get_token_html()
 	),
 	array(
 		"DIV" => "token_list",

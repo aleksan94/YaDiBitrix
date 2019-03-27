@@ -9,11 +9,6 @@ class yadi extends CModule
 	public $MODULE_VERSION = '1.0';
   	public $MODULE_VERSION_DATE = '2019-03-13';
 
-	function __construct()
-	{
-		
-	}
-
 	public function DoInstall()
     {
         // копируем файл админки

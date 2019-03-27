@@ -1,4 +1,6 @@
-if(typeof PlyrPlayer === 'undefined') let PlyrPlayer = {};
+if(typeof PlyrPlayer === 'undefined') {
+	var PlyrPlayer = {};
+}
 //if(!('elems' in PlyrPlayer)) PlyrPlayer.elems = {};
 
 $(document).ready(function() {
@@ -21,8 +23,16 @@ $(document).ready(function() {
 			};
 		}
 		if(!('data' in PlyrPlayer[plyr_id])) {
-			$.get('/local/components/YaDi/plyr/templates/.default/ajax/get_meta.php', {})
+			$.get('/local/components/YaDi/plyr/templates/.default/ajax/get_meta.php', {TOKEN: token, LINK: media_link}, function() {
+				
+			}, 'html');
 		}
+		/*if(!('player' in PlyrPlayer[plyr_id])) {
+
+		}*/
+
+		// test
+		PlyrPlayer[plyr_id].player = new Plyr('[plyr-id="'+plyr_id+'"]');
 	});
 });
 

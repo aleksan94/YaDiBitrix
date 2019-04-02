@@ -1,6 +1,6 @@
-if(typeof PlyrPlayer === 'undefined') {
-	var PlyrPlayer = {};
-}
+if(typeof PlyrPlayer === 'undefined') var PlyrPlayer = {};
+if(!('settings' in PlyrPlayer)) PlyrPlayer.settings = {};
+PlyrPlayer.settings.packageSize = 256*1024;
 //if(!('elems' in PlyrPlayer)) PlyrPlayer.elems = {};
 
 $(document).ready(function() {
@@ -22,16 +22,13 @@ $(document).ready(function() {
 				link: media_link
 			};
 		}
-		if(!('data' in PlyrPlayer[plyr_id])) {
-			$.get('/local/components/YaDi/plyr/templates/.default/ajax/get_meta.php', {TOKEN: token, LINK: media_link}, function() {
-				
-			}, 'html');
+		if(!('data' in PlyrPlayer[plyr_id])) {			
+			console.log(PlyrPlayer[plyr_id].params);
+			$.get('/local/components/YaDi/plyr/templates/.default/ajax/download.php', {token: PlyrPlayer[plyr_id].params.token, public_key: PlyrPlayer[plyr_id].params.link}, function(response) {
+				console.log(response);
+			}, 'json');
 		}
-		/*if(!('player' in PlyrPlayer[plyr_id])) {
 
-		}*/
-
-		// test
 		PlyrPlayer[plyr_id].player = new Plyr('[plyr-id="'+plyr_id+'"]');
 	});
 });

@@ -9,7 +9,7 @@ $this->addExternalJS("/local/js/plyr.min.js");
 
 ?>
 
-<script type="text/javascript" src="/local/js/jquery-3.3.1.min.js"></script>
+<!-- <script type="text/javascript" src="/local/js/jquery-3.3.1.min.js"></script> -->
 
 <div class="plyr-player-video-container">
 	<video class="plyr-player-video" token="<?=trim($arParams['TOKEN'])?>" media-link="<?=trim($arParams['LINK'])?>" plyr-id="<?=randString()?>"></video>

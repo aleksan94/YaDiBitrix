@@ -9,6 +9,7 @@ $(document).ready(function() {
 		let plyr_id = $(v).attr('plyr-id');
 		let token = $(v).attr('token');
 		let media_link = $(v).attr('media-link');
+		let poster = $(v).attr('poster');
 		if(!(plyr_id in PlyrPlayer)) {
 			PlyrPlayer[plyr_id] = {};
 			PlyrPlayer[plyr_id].id = plyr_id;
@@ -23,21 +24,23 @@ $(document).ready(function() {
 			};
 		}
 		if(!('data' in PlyrPlayer[plyr_id])) {			
-			$.get('/local/components/YaDi/plyr/templates/.default/ajax/meta.php', {token: PlyrPlayer[plyr_id].params.token, public_key: PlyrPlayer[plyr_id].params.link}, function(response) {
+			$.get('/local/components/yadi/plyr/templates/.default/ajax/meta.php', {token: PlyrPlayer[plyr_id].params.token, public_key: PlyrPlayer[plyr_id].params.link}, function(response) {
 				if(!!response.size && response.size > 0) {
 					if(!('meta' in PlyrPlayer[plyr_id])) PlyrPlayer[plyr_id].meta = {};
 					PlyrPlayer[plyr_id].meta = response;
+					console.log(response);
 
 					PlyrPlayer[plyr_id].player.source = {
 						type: 'video',
-					    title: 'Example title',
+					    //title: 'Example title',
 					    sources: [
 					        {
 					            src: PlyrPlayer[plyr_id].meta.file,
-					            type: 'video/mp4',
-					            size: 720,
+					            //type: 'video/mp4',
+					            //size: 720,
 					        },
 					    ],
+					    poster: poster
 					};
 				}
 			}, 'json');

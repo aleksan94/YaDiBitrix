@@ -11,6 +11,8 @@ foreach($arTokenList as $tokenData) {
 	$arTokens[$tokenData['token']] = $value;
 }
 
+$previewExt = 'jpg,jpeg,gif,png';
+
 $arComponentParameters = array(
 	"GROUPS" => array(
 		),
@@ -19,7 +21,7 @@ $arComponentParameters = array(
 			'PARENT' => 'BASE',
 			"NAME" => "Ссылка получения токена",
 			"TYPE" => "CUSTOM",
-			"JS_FILE" => "/local/components/YaDi/plyr/parameters.js",
+			"JS_FILE" => "/local/components/yadi/plyr/parameters.js",
 			"JS_EVENT" => "GetToken"
 		),
 		"TOKEN" => array(
@@ -39,6 +41,16 @@ $arComponentParameters = array(
 			"PARENT" => "BASE",
 			"NAME" => "Расшаренная ссылка на видео",
 			"TYPE" => "STRING",
+		),
+		"PREVIEW" => array(
+		   "PARENT" => "BASE",
+		   "NAME" => 'Выберите файл превью:',
+		   "TYPE" => "FILE",
+		   "FD_TARGET" => "F",
+		   "FD_EXT" => $previewExt,
+		   "FD_UPLOAD" => true,
+		   "FD_USE_MEDIALIB" => true,
+		   "FD_MEDIALIB_TYPES" => array('image'),
 		),
 	),
 );

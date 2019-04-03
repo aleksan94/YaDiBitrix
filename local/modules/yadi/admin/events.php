@@ -21,7 +21,6 @@ if(isset($_POST['get_token_btn'])) {
 		    'response_type' => 'code',
 		    'client_id'     => $clientID,
 		    'display'       => 'popup',
-		    'redirect_uri' => "http://".$_SERVER['SERVER_NAME']."/bitrix/admin/yadi_get_token.php"
 		);
 
 		header('Location: ' . $url . '?' . urldecode(http_build_query($params)));

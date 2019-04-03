@@ -23,9 +23,23 @@ $(document).ready(function() {
 			};
 		}
 		if(!('data' in PlyrPlayer[plyr_id])) {			
-			console.log(PlyrPlayer[plyr_id].params);
-			$.get('/local/components/YaDi/plyr/templates/.default/ajax/download.php', {token: PlyrPlayer[plyr_id].params.token, public_key: PlyrPlayer[plyr_id].params.link}, function(response) {
-				console.log(response);
+			$.get('/local/components/YaDi/plyr/templates/.default/ajax/meta.php', {token: PlyrPlayer[plyr_id].params.token, public_key: PlyrPlayer[plyr_id].params.link}, function(response) {
+				if(!!response.size && response.size > 0) {
+					if(!('meta' in PlyrPlayer[plyr_id])) PlyrPlayer[plyr_id].meta = {};
+					PlyrPlayer[plyr_id].meta = response;
+
+					PlyrPlayer[plyr_id].player.source = {
+						type: 'video',
+					    title: 'Example title',
+					    sources: [
+					        {
+					            src: PlyrPlayer[plyr_id].meta.file,
+					            type: 'video/mp4',
+					            size: 720,
+					        },
+					    ],
+					};
+				}
 			}, 'json');
 		}
 
